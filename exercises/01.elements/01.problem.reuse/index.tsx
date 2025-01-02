@@ -6,6 +6,7 @@ function Footer() {
 }
 
 // 🐨 assign a <Footer /> to a footer variable here
+const footer = <Footer />
 
 function App() {
 	const [count, setCount] = useState(0)
@@ -14,7 +15,8 @@ function App() {
 		<div>
 			<button onClick={increment}>The count is {count}</button>
 			{/* 🐨 change this to an interpolation and interpolate the footer */}
-			<Footer />
+			{/*<Footer />*/}
+			{footer}
 		</div>
 	)
 }
