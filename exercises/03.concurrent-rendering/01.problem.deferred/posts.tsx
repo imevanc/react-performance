@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {useDeferredValue, useState} from 'react'
 import {
 	generateGradient,
 	getMatchingPosts,
@@ -11,9 +11,10 @@ export function MatchingPosts() {
 	const [searchParams] = useSearchParams()
 	const query = getQueryParam(searchParams)
 	// 🐨 make a deferredQuery with useDeferredValue
+	const deferredQuery = useDeferredValue(query)
 	// 🐨 pass the deferredQuery to getMatchingPosts here
 	// so React can defer the Cards we render with the matching posts.
-	const matchingPosts = getMatchingPosts(query)
+	const matchingPosts = getMatchingPosts(deferredQuery)
 
 	return (
 		<ul className="post-list">
