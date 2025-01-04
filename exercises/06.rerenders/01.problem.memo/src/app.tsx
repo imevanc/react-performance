@@ -1,5 +1,5 @@
 import { type UseComboboxPropGetters } from 'downshift'
-import { Suspense, use, useState, useTransition } from 'react'
+import {memo, Suspense, use, useState, useTransition} from 'react'
 import { useSpinDelay } from 'spin-delay'
 import { searchCities } from './cities/index.ts'
 import './index.css'
@@ -79,7 +79,7 @@ function CityChooser() {
 }
 
 // 🐨 wrap this in memo from React
-function ListItem<City extends { id: string; name: string }>({
+const ListItem = memo(function ListItemImp<City extends { id: string; name: string }>({
 	index,
 	city,
 	selectedCity,
@@ -109,4 +109,4 @@ function ListItem<City extends { id: string; name: string }>({
 			{city.name}
 		</li>
 	)
-}
+})
