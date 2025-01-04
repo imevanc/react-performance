@@ -113,13 +113,13 @@ function CityChooser() {
 const ListItem = memo(function ListItem<
 	City extends { id: string; name: string },
 >({
-	index,
-	city,
-	isSelected,
-	isHighlighted,
-	getItemProps,
-	start,
-	size,
+	 index,
+	 city,
+	 isSelected,
+	 isHighlighted,
+	 getItemProps,
+	 start,
+     size,
 }: {
 	index: number
 	city: City
