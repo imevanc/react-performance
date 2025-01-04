@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import {createContext, use, useContext, useState} from 'react'
 import * as ReactDOM from 'react-dom/client'
 
 // 🐨 create a ColorContext
+const ColorContext = createContext<string>('')
 
 // 🐨 remove the prop
-function Footer({ color }: { color: string }) {
+function Footer( ) {
 	// 🐨 get the color from the ColorContext
+	const color = use(ColorContext)
 	return <footer style={{ color }}>I am the ({color}) footer</footer>
 }
 
@@ -20,14 +22,14 @@ function Main({ footer }: { footer: React.ReactNode }) {
 	)
 }
 
-// 🐨 create the <Footer /> out here and assign it to a footer variable
+const footer = <Footer />
 
 function App() {
 	const [color, setColor] = useState('black')
 	const [appCount, setAppCount] = useState(0)
 	// 🐨 wrap all this with the ColorContext provider and pass the color
 	return (
-		<div>
+		<ColorContext.Provider value={color}>
 			<div>
 				<p>Set the footer color:</p>
 				<div style={{ display: 'flex', gap: 4 }}>
@@ -40,8 +42,8 @@ function App() {
 				The app count is {appCount}
 			</button>
 			{/* 🐨 remove the color prop and move this outside the component again */}
-			<Main footer={<Footer color={color} />} />
-		</div>
+			<Main footer={footer} />
+		</ColorContext.Provider>
 	)
 }
 

@@ -1,4 +1,4 @@
-import { createContext, use, useState } from 'react'
+import {createContext, memo, use, useState} from 'react'
 import * as ReactDOM from 'react-dom/client'
 
 const ColorContext = createContext<string | null>(null)
@@ -10,14 +10,14 @@ function useColor() {
 }
 
 // 🐨 memoize the Footer component with memo from 'react'
-function Footer({ name }: { name: string }) {
+const Footer= memo(function FooterImpl({ name }: { name: string }) {
 	const color = useColor()
 	return (
 		<footer style={{ color }}>
 			I am the ({color}) footer, {name || 'Unnamed'}
 		</footer>
 	)
-}
+})
 
 function Main({ footer }: { footer: React.ReactNode }) {
 	const [count, setCount] = useState(0)
