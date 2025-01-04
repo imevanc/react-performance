@@ -1,4 +1,4 @@
-import { createContext, memo, use, useState } from 'react'
+import {createContext, memo, use, useMemo, useState} from 'react'
 import * as ReactDOM from 'react-dom/client'
 
 const FooterContext = createContext<{
@@ -65,7 +65,7 @@ function App() {
 	const [color, setColor] = useState('black')
 	const [name, setName] = useState('')
 	// 🐨 wrap this in useMemo
-	const value = { color, name }
+	const value = useMemo(()=>({color,name}), [color,name])
 	return (
 		<FooterContext value={value}>
 			<div>
